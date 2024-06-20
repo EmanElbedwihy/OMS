@@ -54,7 +54,7 @@ export class CartsController {
     type: CartDto,
   })
   @ApiResponse({ status: 400, description: 'Validation failed.' })
-  @ApiResponse({ status: 404, description: 'Cart not found.' })
+  @ApiResponse({ status: 404, description: 'User not found.' })
   @ApiResponse({ status: 500, description: 'Internal server error.' })
   @Get(':userId')
   async getCart(@Param('userId', new ParseIntPipe()) userId: number) {

@@ -46,7 +46,7 @@ export class OrdersController {
   async getOrder(@Param('orderId', new ParseIntPipe()) orderId: number) {
     return this.ordersService.getOrder(orderId);
   }
-  // -------------------------------------create order-----------------------------------------
+  // -------------------------------------create order---------------------------------------
   @ApiOperation({ summary: 'Create a new order' })
   @ApiQuery({ name: 'userId', type: Number })
   @ApiResponse({
