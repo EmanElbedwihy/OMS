@@ -72,3 +72,9 @@ model CartItem {
 
   @@id([cartId, productId])
 }
+
+model Coupon {
+  code        String @id
+  discount    Int
+  expiration  DateTime
+}

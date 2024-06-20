@@ -22,6 +22,7 @@ import {
 import { OrdersService } from './orders.service';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { CreateOrderDto } from './dto/create-order.dto';
+import { GetOrderDto, CreateOrderDtoRes } from './dto/get-order.dto';
 
 @ApiTags('Orders')
 @Controller('orders')
@@ -33,26 +34,7 @@ export class OrdersController {
   @ApiResponse({
     status: 200,
     description: 'The order has been successfully retrieved.',
-    schema: {
-      example: {
-        orderId: 1,
-        orderDate: '2024-06-19T20:05:08.093Z',
-        status: 'Delivered',
-        userId: 1,
-        total: 20,
-        orderItems: [
-          {
-            productId: 1,
-            quantity: 2,
-            product: {
-              name: 'Product 1',
-              description: 'Description for product 1',
-              price: 10,
-            },
-          },
-        ],
-      },
-    },
+    type: GetOrderDto,
   })
   @ApiResponse({ status: 404, description: 'Order not found.' })
   @ApiResponse({
@@ -70,15 +52,7 @@ export class OrdersController {
   @ApiResponse({
     status: 201,
     description: 'The order has been successfully created.',
-    schema: {
-      example: {
-        orderId: 3,
-        orderDate: '2024-06-19T22:12:09.315Z',
-        status: 'Pending',
-        userId: 1,
-        total: 20,
-      },
-    },
+    type: CreateOrderDtoRes,
   })
   @ApiResponse({ status: 404, description: 'User not found.' })
   @ApiResponse({
@@ -102,21 +76,14 @@ export class OrdersController {
   @ApiResponse({
     status: 200,
     description: 'The coupon has been successfully applied.',
-    schema: {
-      example: {
-        orderId: 2,
-        orderDate: '2024-06-19T20:05:08.099Z',
-        status: 'Pending',
-        userId: 2,
-        total: 45,
-      },
-    },
+    type: CreateOrderDtoRes,
   })
-  @ApiResponse({ status: 404, description: 'Order not found.' })
+  @ApiResponse({ status: 404, description: 'Order or Coupon not found.' })
   @ApiResponse({
     status: 400,
     description: 'Validation failed.',
   })
+  @ApiResponse({ status: 410, description: 'Coupon expired.' })
   @ApiResponse({ status: 500, description: 'Internal server error.' })
   @Post('/apply-coupon')
   async appplyCoupon(
@@ -131,15 +98,7 @@ export class OrdersController {
   @ApiResponse({
     status: 200,
     description: 'The order status has been successfully updated.',
-    schema: {
-      example: {
-        orderId: 1,
-        orderDate: '2024-06-19T20:05:08.093Z',
-        status: 'Delivering',
-        userId: 1,
-        total: 20,
-      },
-    },
+    type: CreateOrderDtoRes,
   })
   @ApiResponse({ status: 404, description: 'Order not found.' })
   @ApiResponse({ status: 400, description: 'Validation failed.' })

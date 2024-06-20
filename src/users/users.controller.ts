@@ -14,15 +14,10 @@ export class UsersController {
     status: 200,
     description: 'The order history has been successfully retrieved.',
     schema: {
-      example: [
-        {
-          orderId: 1,
-          orderDate: '2024-06-19T20:05:08.093Z',
-          status: 'Delivered',
-          userId: 1,
-          total: 20,
-        },
-      ],
+      type: 'array',
+      items: {
+        $ref: '#/components/schemas/CreateOrderDtoRes',
+      },
     },
   })
   @ApiResponse({ status: 400, description: 'Validation failed.' })

@@ -5,12 +5,19 @@ import {
 } from '@nestjs/common';
 import { CreateCartDto } from './dto/create-cart.dto';
 import { UpdateCartDto } from './dto/update-cart.dto';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class CartsService {
   constructor(private readonly prisma: PrismaService) {}
 
+  /**
+   * Adds a product to the cart of a specific user.
+   * @param {CreateCartDto} createCartDto - Data Transfer Object containing userId and productId.
+   * @returns {Promise<object>} - The updated cart item.
+   * @throws {NotFoundException} - If the user or product is not found.
+   * @throws {ConflictException} - If the product is not available.
+   */
   async addProduct(createCartDto: CreateCartDto) {
     const cart = await this.prisma.prismaClient.cart.findFirst({
       where: { userId: createCartDto.userId },
@@ -61,6 +68,13 @@ export class CartsService {
     }
   }
 
+  /**
+   * Removes a product from the cart of a specific user.
+   * @param {number} userId - The ID of the user.
+   * @param {number} productId - The ID of the product to remove.
+   * @returns {Promise<void>}
+   * @throws {NotFoundException} - If the user, product, or product in cart is not found.
+   */
   async removeProduct(userId: number, productId: number) {
     const cart = await this.prisma.prismaClient.cart.findFirst({
       where: { userId },
@@ -97,6 +111,12 @@ export class CartsService {
     }
   }
 
+  /**
+   * Retrieves the cart of a specific user.
+   * @param {number} userId - The ID of the user.
+   * @returns {Promise<object>} - The cart details including items.
+   * @throws {NotFoundException} - If the user's cart is not found.
+   */
   async getCart(userId: number) {
     const cart = await this.prisma.prismaClient.cart.findFirst({
       where: { userId },
@@ -120,6 +140,13 @@ export class CartsService {
     else return cart;
   }
 
+  /**
+   * Updates the quantity of a product in the cart of a specific user.
+   * @param {UpdateCartDto} updateCartDto - Data Transfer Object containing userId, productId, and quantity.
+   * @returns {Promise<object>} - The updated cart item.
+   * @throws {NotFoundException} - If the user, product, or product in cart is not found.
+   * @throws {ConflictException} - If the product is not available in the required quantity.
+   */
   async updateCart(updateCartDto: UpdateCartDto) {
     const cart = await this.prisma.prismaClient.cart.findFirst({
       where: { userId: updateCartDto.userId },

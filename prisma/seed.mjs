@@ -122,6 +122,22 @@ async function main() {
     },
   });
 
+  // Create Coupons
+  await prisma.coupon.create({
+    data: {
+      code: 'Summer24',
+      discount: 25,
+      expiration: new Date(2024, 7, 24, 0, 0, 0, 0),
+    },
+  });
+  await prisma.coupon.create({
+    data: {
+      code: 'Winter25',
+      discount: 50,
+      expiration: new Date(2025, 2, 2, 0, 0, 0, 0),
+    },
+  });
+
   console.log('Seed data created');
 }
 

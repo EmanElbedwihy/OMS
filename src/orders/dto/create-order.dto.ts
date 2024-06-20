@@ -1,4 +1,4 @@
-import { IsInt, Min } from 'class-validator';
+import { IsInt, IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 export class CreateOrderDto {
   @ApiProperty({
@@ -8,10 +8,9 @@ export class CreateOrderDto {
   @IsInt()
   orderId: number;
   @ApiProperty({
-    description: 'The discount to be applied to the order',
-    example: 25,
+    description: 'The code of the coupon',
+    example: 'Summer24',
   })
-  @IsInt()
-  @Min(1)
-  discount: number;
+  @IsString()
+  code: string;
 }

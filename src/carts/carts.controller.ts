@@ -23,6 +23,7 @@ import {
 import { CartsService } from './carts.service';
 import { CreateCartDto } from './dto/create-cart.dto';
 import { UpdateCartDto } from './dto/update-cart.dto';
+import { CartDto, CartItemDto } from './dto/get-cart-dto';
 
 @ApiTags('Carts')
 @Controller('cart')
@@ -34,13 +35,7 @@ export class CartsController {
   @ApiResponse({
     status: 201,
     description: 'The product has been successfully added to the cart.',
-    schema: {
-      example: {
-        cartId: 1,
-        productId: 1,
-        quantity: 1,
-      },
-    },
+    type: CartItemDto,
   })
   @ApiResponse({ status: 400, description: 'Validation failed.' })
   @ApiResponse({ status: 404, description: 'User or Product not found.' })
@@ -56,24 +51,7 @@ export class CartsController {
   @ApiResponse({
     status: 200,
     description: 'The order has been successfully retrieved.',
-    schema: {
-      example: {
-        cartId: 1,
-        total: 10,
-        userId: 1,
-        cartItems: [
-          {
-            productId: 1,
-            quantity: 1,
-            product: {
-              name: 'Product 1',
-              description: 'Description for product 1',
-              price: 10,
-            },
-          },
-        ],
-      },
-    },
+    type: CartDto,
   })
   @ApiResponse({ status: 400, description: 'Validation failed.' })
   @ApiResponse({ status: 404, description: 'Cart not found.' })
@@ -109,13 +87,7 @@ export class CartsController {
   @ApiResponse({
     status: 200,
     description: 'The cart has been successfully updated.',
-    schema: {
-      example: {
-        cartId: 2,
-        productId: 2,
-        quantity: 5,
-      },
-    },
+    type: CartItemDto,
   })
   @ApiResponse({ status: 400, description: 'Validation failed.' })
   @ApiResponse({ status: 404, description: 'User or Product not found .' })
