@@ -7,6 +7,7 @@
 - [Get started](#get-started)
   - [Installation](#install)
   - [Running](#running)
+- [Swagger Documentation](#swagger)
 
 
 ## 📙 About <a name = "about"></a>
@@ -43,11 +44,10 @@ This API applies a coupon code to reduce the total price of an order. It require
 <h4>9-Get User Orders</h4>
 This API retrieves all orders for a specific user.It requires the user ID. It fails if the user is not found or if validation fails.
 
+
 ## 🏁 Getting Started <a name = "get-started"></a>
 
 This is an list of needed instructions to run the project locally
-
-
 ### Installation <a name = "install"></a>
 
 1. **_Clone the repository_**
@@ -102,6 +102,11 @@ $ npm run start:dev
 ```bash
 http://localhost:3000/api
 ```
+
+
+## 📃 Swagger Documentation <a name = "swagger"></a>
+
+![Swagger](doc/Swagger.png)
    
    
 
