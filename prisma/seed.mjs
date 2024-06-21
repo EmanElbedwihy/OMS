@@ -11,6 +11,7 @@ async function deleteAllData() {
     await prisma.orderItem.deleteMany({});
     await prisma.product.deleteMany({});
     await prisma.user.deleteMany({});
+    await prisma.coupon.deleteMany({});
 
     console.log('All data deleted successfully.');
   } catch (error) {
