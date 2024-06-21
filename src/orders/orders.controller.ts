@@ -39,7 +39,7 @@ export class OrdersController {
   @ApiResponse({ status: 404, description: 'Order not found.' })
   @ApiResponse({
     status: 400,
-    description: 'Validation failed (numeric string is expected).',
+    description: 'Validation failed.',
   })
   @ApiResponse({ status: 500, description: 'Internal server error.' })
   @Get(':orderId')
@@ -57,7 +57,7 @@ export class OrdersController {
   @ApiResponse({ status: 404, description: 'User not found.' })
   @ApiResponse({
     status: 400,
-    description: 'Validation failed (numeric string is expected).',
+    description: 'Validation failed.',
   })
   @ApiResponse({
     status: 409,
