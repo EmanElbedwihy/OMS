@@ -57,7 +57,7 @@ export class OrdersController {
   @ApiResponse({ status: 404, description: 'User not found.' })
   @ApiResponse({
     status: 400,
-    description: 'Validation failed.',
+    description: 'Validation failed or Cart is empty.',
   })
   @ApiResponse({
     status: 409,

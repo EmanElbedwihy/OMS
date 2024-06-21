@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   ConflictException,
   GoneException,
   Injectable,
@@ -127,6 +128,8 @@ Create a new order from the user's cart.
       },
     });
     if (!cart) throw new NotFoundException('User not found');
+    if (cart.cartItems.length === 0)
+      throw new BadRequestException('Cart is empty');
 
     for (const item of cart.cartItems) {
       if (item.quantity > item.product.stock) {
