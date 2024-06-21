@@ -47,7 +47,7 @@ This API retrieves all orders for a specific user.It requires the user ID. It fa
 
 ## 🏁 Getting Started <a name = "get-started"></a>
 
-This is an list of needed instructions to run the project locally
+This is a list of needed instructions to run the project locally
 ### Installation <a name = "install"></a>
 
 1. **_Clone the repository_**
